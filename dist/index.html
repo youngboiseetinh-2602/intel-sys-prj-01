@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Công cụ AI đa tác tử hỗ trợ sàng lọc nguy cơ tiểu đường từ 8 chỉ số sức khỏe."
+    />
+    <meta name="theme-color" content="#18382f" />
+    <title>Đường An — Sàng lọc nguy cơ tiểu đường</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Điều hướng chính">
+        <a class="brand" href="#top" aria-label="Đường An - Trang đầu">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" role="img">
+              <path d="M20 6c-4.7 7-9 11.8-9 18a9 9 0 0 0 18 0c0-6.2-4.3-11-9-18Z" />
+              <path d="M16.5 24.5c1.2 2.1 3.1 3 5.6 2.5" />
+            </svg>
+          </span>
+          <span>
+            <strong>Đường An</strong>
+            <small>Diabetes AI</small>
+          </span>
+        </a>
+
+        <nav class="nav-list">
+          <a class="nav-link active" href="#assessment" data-section="assessment">
+            <span class="nav-icon">01</span>
+            <span>Đánh giá nguy cơ</span>
+          </a>
+          <a class="nav-link" href="#knowledge" data-section="knowledge">
+            <span class="nav-icon">02</span>
+            <span>Hỏi trợ lý</span>
+          </a>
+          <a class="nav-link" href="#model" data-section="model">
+            <span class="nav-icon">03</span>
+            <span>Hiểu mô hình</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-card">
+          <span class="status-dot" aria-hidden="true"></span>
+          <div>
+            <strong>4 agent sẵn sàng</strong>
+            <p>Mô hình chạy cục bộ, không gửi dữ liệu sức khỏe lên máy chủ.</p>
+          </div>
+        </div>
+
+        <p class="sidebar-foot">Bản hỗ trợ sàng lọc · Không thay thế chẩn đoán y khoa</p>
+      </aside>
+
+      <main id="top">
+        <header class="topbar">
+          <button class="menu-button" type="button" aria-label="Mở menu" aria-expanded="false">
+            <span></span><span></span>
+          </button>
+          <div class="topbar-status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Mô hình ANN đã tải</span>
+          </div>
+          <button class="privacy-button" type="button" data-modal-open="privacy-modal">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 5 6v5c0 4.6 2.8 8.2 7 10 4.2-1.8 7-5.4 7-10V6l-7-3Z" />
+              <path d="m9.5 12 1.7 1.7 3.5-4" />
+            </svg>
+            Quyền riêng tư
+          </button>
+        </header>
+
+        <section class="hero" id="assessment">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span> Sàng lọc có giải thích</p>
+            <h1>Hiểu nguy cơ.<br /><em>Chủ động sớm.</em></h1>
+            <p class="hero-lead">
+              Nhập 8 chỉ số sức khỏe để nhận đánh giá từ mô hình ANN và khuyến nghị được điều phối bởi hệ thống đa tác tử.
+            </p>
+          </div>
+          <div class="hero-note">
+            <span class="hero-note-number">97.75%</span>
+            <span>ROC–AUC trên tập kiểm thử</span>
+          </div>
+        </section>
+
+        <section class="assessment-grid" aria-label="Biểu mẫu đánh giá và kết quả">
+          <form class="assessment-card form-card" id="risk-form" novalidate>
+            <div class="card-heading">
+              <div>
+                <span class="card-kicker">Bước 01</span>
+                <h2>Thông tin sức khỏe</h2>
+              </div>
+              <button class="sample-button" type="button" id="sample-data">Dùng dữ liệu mẫu</button>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Giới tính</span>
+                <select name="gender" required>
+                  <option value="Female">Nữ</option>
+                  <option value="Male">Nam</option>
+                  <option value="Other">Khác</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Tuổi <small>năm</small></span>
+                <input name="age" type="number" min="0" max="100" step="1" value="42" required />
+              </label>
+
+              <label class="field field-wide">
+                <span>Tiền sử hút thuốc</span>
+                <select name="smoking_history" required>
+                  <option value="No Info">Không rõ</option>
+                  <option value="never" selected>Chưa bao giờ</option>
+                  <option value="former">Đã từng hút</option>
+                  <option value="current">Đang hút</option>
+                  <option value="not current">Hiện không hút</option>
+                  <option value="ever">Từng hút</option>
+                </select>
+              </label>
+
+              <fieldset class="field toggle-field">
+                <legend>Tăng huyết áp</legend>
+                <div class="segmented">
+                  <input id="hypertension-no" name="hypertension" type="radio" value="0" checked />
+                  <label for="hypertension-no">Không</label>
+                  <input id="hypertension-yes" name="hypertension" type="radio" value="1" />
+                  <label for="hypertension-yes">Có</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="field toggle-field">
+                <legend>Bệnh tim</legend>
+                <div class="segmented">
+                  <input id="heart-no" name="heart_disease" type="radio" value="0" checked />
+                  <label for="heart-no">Không</label>
+                  <input id="heart-yes" name="heart_disease" type="radio" value="1" />
+                  <label for="heart-yes">Có</label>
+                </div>
+              </fieldset>
+
+              <label class="field">
+                <span>BMI <small>kg/m²</small></span>
+                <input name="bmi" type="number" min="10" max="80" step="0.1" value="24.5" required />
+              </label>
+
+              <label class="field">
+                <span>HbA1c <small>%</small></span>
+                <input name="HbA1c_level" type="number" min="3" max="20" step="0.1" value="5.4" required />
+              </label>
+
+              <label class="field field-wide">
+                <span>Đường huyết <small>mg/dL</small></span>
+                <input name="blood_glucose_level" type="number" min="50" max="400" step="1" value="110" required />
+              </label>
+            </div>
+
+            <div class="form-error" id="form-error" role="alert" aria-live="polite"></div>
+            <button class="primary-button" type="submit">
+              <span>Phân tích nguy cơ</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </button>
+            <p class="form-caption">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 2.8 8.2 7 10 4.2-1.8 7-5.4 7-10V6l-7-3Z" /></svg>
+              Dữ liệu chỉ được xử lý trong trình duyệt này.
+            </p>
+          </form>
+
+          <article class="assessment-card result-card" id="result-card" aria-live="polite">
+            <div class="result-empty" id="result-empty">
+              <div class="empty-illustration" aria-hidden="true">
+                <svg viewBox="0 0 180 180">
+                  <circle cx="90" cy="90" r="64" />
+                  <path d="M90 43c-20 29-34 44-34 67a34 34 0 0 0 68 0c0-23-14-38-34-67Z" />
+                  <path d="M76 111c4 8 12 12 22 10" />
+                  <path d="M33 90h13m88 0h13M90 20v13" />
+                </svg>
+              </div>
+              <span class="card-kicker">Bước 02</span>
+              <h2>Kết quả sẽ xuất hiện tại đây</h2>
+              <p>Điền các chỉ số bên trái và chọn “Phân tích nguy cơ”. Quá trình mất chưa đến một giây.</p>
+              <div class="agent-flow mini-flow" aria-label="Luồng agent">
+                <span>Dự đoán</span><i></i><span>Kiến thức</span><i></i><span>Khuyến nghị</span>
+              </div>
+            </div>
+
+            <div class="result-content" id="result-content" hidden>
+              <div class="result-topline">
+                <span class="card-kicker">Kết quả đánh giá</span>
+                <button class="text-button" id="reset-result" type="button">Làm lại</button>
+              </div>
+
+              <div class="score-area">
+                <div class="score-ring" id="score-ring" style="--score: 0">
+                  <div class="score-inner">
+                    <strong id="risk-score">0%</strong>
+                    <span>điểm mô hình</span>
+                  </div>
+                </div>
+                <div class="score-summary">
+                  <span class="risk-badge" id="risk-badge">Đang phân tích</span>
+                  <h2 id="risk-title">—</h2>
+                  <p id="risk-description"></p>
+                </div>
+              </div>
+
+              <div class="threshold-line">
+                <span>Ngưỡng phân loại</span>
+                <div class="threshold-track"><i id="threshold-marker"></i><b id="score-marker"></b></div>
+                <strong>84.19%</strong>
+              </div>
+
+              <div class="recommendation-block">
+                <div class="section-label">
+                  <span>Recommendation Agent</span>
+                  <small id="agent-timestamp"></small>
+                </div>
+                <ul id="recommendations"></ul>
+              </div>
+
+              <div class="result-actions">
+                <a class="secondary-button" href="#knowledge">Hỏi trợ lý về kết quả</a>
+                <button class="icon-button" id="copy-result" type="button" aria-label="Sao chép kết quả">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2" /><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" /></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="agent-strip" aria-label="Kiến trúc đa tác tử">
+          <div class="strip-heading">
+            <p class="eyebrow"><span></span> Coordinator Agent</p>
+            <h2>Một yêu cầu, bốn vai trò chuyên biệt</h2>
+          </div>
+          <div class="agent-pipeline">
+            <div class="agent-node coordinator">
+              <span>00</span>
+              <div><strong>Coordinator</strong><small>Điều phối tác vụ</small></div>
+            </div>
+            <i class="pipeline-line"></i>
+            <div class="agent-node">
+              <span>01</span>
+              <div><strong>Prediction</strong><small>ANN · 15 đầu vào</small></div>
+            </div>
+            <i class="pipeline-line"></i>
+            <div class="agent-node">
+              <span>02</span>
+              <div><strong>Knowledge</strong><small>RAG · 3 nguồn</small></div>
+            </div>
+            <i class="pipeline-line"></i>
+            <div class="agent-node">
+              <span>03</span>
+              <div><strong>Recommendation</strong><small>Gợi ý theo nguy cơ</small></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="knowledge-section" id="knowledge">
+          <div class="section-intro">
+            <div>
+              <p class="eyebrow"><span></span> Knowledge Agent</p>
+              <h2>Hỏi về tiểu đường,<br />nhận câu trả lời có nguồn.</h2>
+            </div>
+            <p>
+              Trợ lý tìm trong kho kiến thức đã chuẩn bị từ WHO, NHS và MedlinePlus. Không cần API key, không gửi câu hỏi ra ngoài.
+            </p>
+          </div>
+
+          <div class="chat-layout">
+            <div class="chat-card">
+              <div class="chat-header">
+                <div class="agent-avatar">K</div>
+                <div>
+                  <strong>Trợ lý kiến thức</strong>
+                  <span><i></i> Đang hoạt động</span>
+                </div>
+                <span class="source-count">3 nguồn y khoa</span>
+              </div>
+              <div class="chat-messages" id="chat-messages" aria-live="polite">
+                <div class="message assistant-message">
+                  <div class="message-avatar">K</div>
+                  <div>
+                    <p>Xin chào! Bạn muốn tìm hiểu điều gì về bệnh tiểu đường?</p>
+                    <span class="message-meta">Knowledge Agent · Kho tri thức cục bộ</span>
+                  </div>
+                </div>
+              </div>
+              <div class="suggestion-row" id="suggestion-row">
+                <button type="button">Triệu chứng thường gặp?</button>
+                <button type="button">HbA1c là gì?</button>
+                <button type="button">Cách phòng ngừa?</button>
+              </div>
+              <form class="chat-input" id="chat-form">
+                <label class="sr-only" for="chat-question">Nhập câu hỏi</label>
+                <textarea id="chat-question" rows="1" placeholder="Hỏi về triệu chứng, xét nghiệm, phòng ngừa…" required></textarea>
+                <button type="submit" aria-label="Gửi câu hỏi">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 17 8-17 8 3-8-3-8Z" /><path d="M7 12h14" /></svg>
+                </button>
+              </form>
+            </div>
+
+            <aside class="sources-panel">
+              <span class="card-kicker">Nguồn đang dùng</span>
+              <h3>Kho tri thức được tuyển chọn</h3>
+              <div class="source-list" id="source-list">
+                <a href="https://www.who.int/news-room/questions-and-answers/item/diabetes" target="_blank" rel="noreferrer">
+                  <span class="source-monogram who">W</span>
+                  <div><strong>WHO</strong><small>Diabetes Q&amp;A</small></div>
+                  <b>↗</b>
+                </a>
+                <a href="https://www.nhs.uk/conditions/type-2-diabetes/symptoms/" target="_blank" rel="noreferrer">
+                  <span class="source-monogram nhs">N</span>
+                  <div><strong>NHS</strong><small>Type 2 symptoms</small></div>
+                  <b>↗</b>
+                </a>
+                <a href="https://medlineplus.gov/diabetes.html" target="_blank" rel="noreferrer">
+                  <span class="source-monogram med">M</span>
+                  <div><strong>MedlinePlus</strong><small>Diabetes overview</small></div>
+                  <b>↗</b>
+                </a>
+              </div>
+              <div class="source-note">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
+                Nội dung được truy xuất để cung cấp thông tin tham khảo, không đưa ra chẩn đoán.
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="model-section" id="model">
+          <div class="section-intro model-intro">
+            <div>
+              <p class="eyebrow"><span></span> Export &amp; notebooks</p>
+              <h2>Mô hình có dấu vết,<br />không phải hộp đen tuyệt đối.</h2>
+            </div>
+            <p>
+              Website dùng trực tiếp trọng số từ <code>diabetes_model.keras</code>, bộ tiền xử lý đã xuất và ngưỡng F1 tối ưu từ notebook huấn luyện.
+            </p>
+          </div>
+
+          <div class="metrics-grid">
+            <article><span>Accuracy</span><strong>96.91<small>%</small></strong><i style="--metric: 96.91%"></i></article>
+            <article><span>Precision</span><strong>92.31<small>%</small></strong><i style="--metric: 92.31%"></i></article>
+            <article><span>Recall</span><strong>71.19<small>%</small></strong><i style="--metric: 71.19%"></i></article>
+            <article><span>ROC–AUC</span><strong>97.75<small>%</small></strong><i style="--metric: 97.75%"></i></article>
+          </div>
+
+          <div class="model-details">
+            <article class="plot-card">
+              <div class="plot-heading">
+                <div><span class="card-kicker">Đánh giá</span><h3>Đường cong ROC &amp; PR</h3></div>
+                <button class="text-button plot-toggle active" type="button" data-plot="curves">Đường cong</button>
+                <button class="text-button plot-toggle" type="button" data-plot="matrix">Ma trận</button>
+              </div>
+              <div class="plot-frame">
+                <img id="model-plot" src="./assets/evaluation-curves.png" alt="Biểu đồ đường cong ROC và Precision-Recall của mô hình" />
+              </div>
+            </article>
+
+            <article class="lineage-card">
+              <span class="card-kicker">Dòng dữ liệu</span>
+              <h3>Từ notebook đến trình duyệt</h3>
+              <ol>
+                <li><span>01</span><div><strong>Untitled.ipynb</strong><small>EDA · 5 mô hình ML nền</small></div></li>
+                <li><span>02</span><div><strong>Untitled1.ipynb</strong><small>ANN · preprocessing · export</small></div></li>
+                <li><span>03</span><div><strong>Untitled2.ipynb</strong><small>RAG · multi-agent coordinator</small></div></li>
+                <li><span>04</span><div><strong>Web runtime</strong><small>Suy luận cục bộ · không API key</small></div></li>
+              </ol>
+              <div class="model-spec">
+                <span>15 → 128 → 64 → 32 → 1</span>
+                <small>Dense + BatchNorm + Dropout</small>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <footer>
+          <a class="brand footer-brand" href="#top">
+            <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 6c-4.7 7-9 11.8-9 18a9 9 0 0 0 18 0c0-6.2-4.3-11-9-18Z" /></svg></span>
+            <span><strong>Đường An</strong><small>Diabetes AI</small></span>
+          </a>
+          <p>Được xây dựng từ mô hình và kho tri thức trong thư mục dự án.</p>
+          <p>Chỉ nhằm mục đích giáo dục và hỗ trợ sàng lọc.</p>
+        </footer>
+      </main>
+    </div>
+
+    <dialog class="modal" id="privacy-modal">
+      <div class="modal-heading">
+        <div><span class="card-kicker">Quyền riêng tư</span><h2>Dữ liệu ở lại trên thiết bị</h2></div>
+        <button type="button" data-modal-close aria-label="Đóng">×</button>
+      </div>
+      <p>Mọi phép tiền xử lý và suy luận đều chạy trong trình duyệt. Website không có biểu mẫu tên, email hay số điện thoại và không gửi 8 chỉ số sức khỏe đến dịch vụ bên ngoài.</p>
+      <ul>
+        <li>Không yêu cầu tài khoản.</li>
+        <li>Không lưu lịch sử dự đoán lên máy chủ.</li>
+        <li>Câu hỏi cho Knowledge Agent được tìm trong dữ liệu tĩnh cục bộ.</li>
+      </ul>
+      <button class="primary-button" type="button" data-modal-close>Đã hiểu</button>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./assets/app.js"></script>
+  </body>
+</html>
