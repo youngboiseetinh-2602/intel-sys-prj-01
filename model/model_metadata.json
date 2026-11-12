@@ -1,0 +1,94 @@
+{
+  "project": "Hybrid Multiagent Diabetes Decision Support - Prediction Agent",
+  "purpose": "Educational/research diabetes classification on supplied dataset; NOT a medical diagnosis",
+  "model_type": "ANN (Keras 3 Sequential, torch backend at training)",
+  "original_rows": 100000,
+  "rows_after_drop_exact_duplicates": 96146,
+  "split": {
+    "train": 67305,
+    "validation": 14420,
+    "test": 14421
+  },
+  "positive_rate": {
+    "train": 0.08825495876977936,
+    "validation": 0.08952843273231623,
+    "test": 0.08674849178281673
+  },
+  "input_features": 15,
+  "feature_names": [
+    "gender",
+    "age",
+    "hypertension",
+    "heart_disease",
+    "smoking_history",
+    "bmi",
+    "HbA1c_level",
+    "blood_glucose_level"
+  ],
+  "transformed_features": [
+    "num__age",
+    "num__bmi",
+    "num__HbA1c_level",
+    "num__blood_glucose_level",
+    "cat__gender_Female",
+    "cat__gender_Male",
+    "cat__gender_Other",
+    "cat__smoking_history_No Info",
+    "cat__smoking_history_current",
+    "cat__smoking_history_ever",
+    "cat__smoking_history_former",
+    "cat__smoking_history_never",
+    "cat__smoking_history_not current",
+    "bin__hypertension",
+    "bin__heart_disease"
+  ],
+  "threshold": 0.8370159268379211,
+  "threshold_selection": "Validation F1 maximum, test untouched",
+  "class_weights": {
+    "0": 0.5483989244683452,
+    "1": 5.665404040404041
+  },
+  "training": {
+    "seed": 42,
+    "epochs_max": 26,
+    "epochs_ran": 17,
+    "batch_size": 512,
+    "optimizer": "Adam",
+    "learning_rate_initial": 0.001,
+    "early_stopping": "val_pr_auc, patience 6"
+  },
+  "metrics_test": {
+    "accuracy": 0.9708758061160807,
+    "precision": 0.964245810055866,
+    "recall": 0.6898481215027977,
+    "f1_score": 0.804287045666356,
+    "roc_auc": 0.9785850894075931,
+    "average_precision": 0.8836997998742698,
+    "confusion_matrix": {
+      "TN": 13138,
+      "FP": 32,
+      "FN": 388,
+      "TP": 863
+    }
+  },
+  "training_library": {
+    "keras": "3.13.2",
+    "sklearn": "1.8.0",
+    "torch": "2.10.0+cpu"
+  },
+  "input_domains": {
+    "gender": [
+      "Female",
+      "Male",
+      "Other"
+    ],
+    "smoking_history": [
+      "No Info",
+      "current",
+      "ever",
+      "former",
+      "never",
+      "not current"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#123e37">
+  <title>Đường An · Khám phá chỉ số sức khỏe</title>
+  <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="/">✳ <span>Đường An<small>DIABETES RESEARCH</small></span></a><span class="badge">ANN MODEL · 2026.11</span></header>
+  <main>
+    <section class="intro"><p class="eyebrow">HIỂU CHỈ SỐ, CHỦ ĐỘNG HƠN</p><h1>Một góc nhìn mới<br>về sức khỏe của bạn<span>.</span></h1><p>Khám phá kết quả phân loại từ mô hình mạng nơ-ron với 8 thông tin đầu vào. Dành cho học tập và nghiên cứu.</p><div class="facts"><span><b>8</b> chỉ số đầu vào</span><span><b>ANN</b> mô hình Keras</span><span><b>Riêng tư</b> không lưu hồ sơ</span></div></section>
+    <div class="workspace">
+      <section class="card"><div class="card-heading"><div><p class="eyebrow">01 / THÔNG TIN ĐẦU VÀO</p><h2>Chỉ số của bạn</h2></div><button type="button" id="sample" class="secondary">Điền ví dụ</button></div><p class="muted">Dùng số liệu bạn đã có. Tất cả các trường đều bắt buộc.</p>
+        <form id="patient-form">
+          <div class="fields">
+            <label>Giới tính<select name="gender" required><option value="">Chọn giới tính</option><option value="Female">Nữ</option><option value="Male">Nam</option><option value="Other">Khác</option></select></label>
+            <label>Tuổi <span>năm</span><input name="age" type="number" min="0" max="120" step="any" required placeholder="Ví dụ: 45"></label>
+            <label>BMI <span>kg/m²</span><input name="bmi" type="number" min="10" max="80" step="any" required placeholder="Ví dụ: 24.5"></label>
+            <label>HbA1c <span>%</span><input name="HbA1c_level" type="number" min="2" max="20" step="any" required placeholder="Ví dụ: 5.5"></label>
+            <label>Đường huyết <span>mg/dL</span><input name="blood_glucose_level" type="number" min="40" max="600" step="any" required placeholder="Ví dụ: 110"></label>
+            <label>Tiền sử hút thuốc<select name="smoking_history" required><option value="">Chọn tiền sử</option><option value="No Info">Không có thông tin</option><option value="never">Chưa từng hút</option><option value="current">Đang hút</option><option value="former">Đã bỏ hút</option><option value="ever">Đã từng hút</option><option value="not current">Hiện không hút</option></select></label>
+            <label>Tăng huyết áp<select name="hypertension" required><option value="">Chọn tình trạng</option><option value="0">Không</option><option value="1">Có</option></select></label>
+            <label>Bệnh tim<select name="heart_disease" required><option value="">Chọn tình trạng</option><option value="0">Không</option><option value="1">Có</option></select></label>
+          </div>
+          <p class="privacy">Thông tin được gửi đến máy chủ để tính toán, không ghi vào cơ sở dữ liệu.</p>
+          <button id="submit" type="submit" class="primary">Xem kết quả phân loại <span>↗</span></button><p id="error" role="alert" hidden></p>
+        </form>
+      </section>
+      <aside class="card result-card" aria-live="polite" aria-atomic="true"><p class="eyebrow">02 / KẾT QUẢ MÔ HÌNH</p><div id="empty"><div class="orb">✳</div><h2>Mỗi chỉ số là<br>một mảnh ghép.</h2><p class="muted">Hoàn thành thông tin để xem mô hình phân loại dữ liệu đầu vào của bạn.</p></div><div id="result" hidden><span id="label" class="result-label"></span><h2>Điểm mô hình</h2><div id="score" class="score"></div><div class="track"><div id="bar"></div></div><p id="threshold" class="muted"></p><p id="explanation"></p><p class="muted">Đây là điểm đầu ra của mô hình, không phải xác suất mắc bệnh cá nhân đã được hiệu chuẩn.</p></div><div class="notice"><strong>Lưu ý khi đọc kết quả</strong><p>Mô hình phục vụ nghiên cứu, không thay thế chẩn đoán hoặc tư vấn từ nhân viên y tế. Kết quả âm tính không loại trừ bệnh.</p></div></aside>
+    </div>
+    <section class="model-note"><span class="eyebrow">MINH BẠCH MÔ HÌNH</span><p>Keras ANN · Bộ tiền xử lý đi kèm model · Ngưỡng chọn theo F1 trên tập validation · 14.421 mẫu kiểm thử</p><p>Accuracy <b>97,09%</b> <span> / </span> Precision <b>96,42%</b> <span> / </span> Recall <b>68,98%</b></p><small>Các chỉ số do gói model cung cấp trên bộ dữ liệu nghiên cứu; không đại diện cho hiệu quả lâm sàng.</small></section>
+  </main><footer>Đường An <span>Được xây dựng cho học tập & nghiên cứu.</span></footer>
+</body></html>

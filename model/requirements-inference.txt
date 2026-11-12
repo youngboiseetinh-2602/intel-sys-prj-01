@@ -1,0 +1,6 @@
+keras>=3.10,<4
+torch>=2.2
+scikit-learn>=1.5,<2
+joblib>=1.4
+pandas>=2.0
+numpy>=1.26

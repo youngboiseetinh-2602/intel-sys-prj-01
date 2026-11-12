@@ -1,2 +1,6 @@
 .vercel/
 *.tar.gz
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
